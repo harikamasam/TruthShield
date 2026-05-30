@@ -1,0 +1,156 @@
+# TruthShield
+
+**AI Trust Intelligence Platform for misinformation, propaganda, toxicity, and AI-generated narrative analysis.**
+
+TruthShield analyzes online content and produces an explainable **Trust Intelligence Report**. It is built to feel like a serious AI product: a cinematic scan flow on the frontend, a modular FastAPI analysis pipeline on the backend, weighted signal scoring, manipulation detection, claim extraction, confidence scoring, and analyst-style summaries.
+
+## Project Summary
+
+TruthShield helps users evaluate risky narratives before sharing them. A user can paste a tweet, article, forwarded message, or headline, then receive a structured report covering:
+
+- Credibility Risk
+- Manipulation Signals
+- Narrative Risk
+- Toxicity
+- Propaganda and bias patterns
+- AI-generated content suspicion
+- Claim reliability
+- Final sharing recommendation
+
+## Architecture
+
+```text
+TruthShield/
+  backend/
+    app/
+      main.py
+      claim_extractor.py
+      credibility_analyzer.py
+      manipulation_detector.py
+      toxicity_analyzer.py
+      bias_detector.py
+      ai_content_detector.py
+      risk_scoring.py
+      summary_generator.py
+      sample_content.py
+  frontend/
+    src/
+      App.jsx
+      api.js
+      components/
+        AnalyzerInput.jsx
+        LiveScanOverlay.jsx
+        ReportNarrativeHeader.jsx
+        SignalScoringSection.jsx
+        ManipulationVisualizer.jsx
+        SocialIntelPreview.jsx
+```
+
+## Backend Intelligence Modules
+
+- **Claim Extraction**: extracts high-impact factual claims and assigns verification-style labels.
+- **Credibility Engine**: detects source absence, sensational wording, urgency manipulation, unsupported authority claims, conspiracy phrasing, and clickbait.
+- **Manipulation Engine**: detects fear appeal, outrage amplification, emotional coercion, one-sided framing, propaganda language, divisive wording, and psychological triggers.
+- **Toxicity Engine**: detects harmful, abusive, threatening, and harassing language.
+- **Bias and Propaganda Engine**: identifies one-sided claims, institutional distrust framing, political/social bias, and sensational framing.
+- **AI-Generated Suspicion Engine**: analyzes repetitive structure, generic wording, low-specificity patterns, unnatural transitions, and synthetic sentence rhythm.
+- **Risk Scoring Engine**: combines weighted signals into trust score, confidence score, risk level, and recommendation.
+- **Summary Generator**: creates an analyst-style intelligence summary for the report.
+
+## API Overview
+
+### `POST /analyze`
+
+Returns both compatibility fields and enhanced intelligence fields:
+
+- `trust_score`
+- `confidence_score`
+- `risk_level`
+- `credibility_label`
+- `recommendation`
+- `intelligence_summary`
+- `analysis_steps`
+- `key_claims`
+- `red_flags`
+- `toxicity`
+- `bias`
+- `manipulation`
+- `ai_generated_suspicion`
+- `scoring.signals`
+- `scoring.weights`
+
+### `GET /samples`
+
+Returns realistic demo samples for misinformation, propaganda, AI-generated writing, toxic political content, and sensational narrative risk.
+
+## Frontend Experience
+
+- Premium product landing page
+- Real-world content presets
+- Live AI scan overlay with analysis timeline
+- Trust score and confidence score
+- Analyst-style intelligence summary
+- Manipulation Intelligence section
+- Signal-Based Risk Scoring section
+- Claim verification table
+- Red flag explanations
+- Before You Share recommendation panel
+- Browser extension and narrative-risk product mockups
+
+## Screenshots
+
+Add screenshots here before publishing:
+
+- Hero and product mockup
+- Live AI scan overlay
+- Trust Intelligence Report
+- Manipulation Signals and Signal-Based Risk Scoring
+- Browser extension mockup
+
+## Local Setup
+
+Backend:
+
+```bash
+cd backend
+python -m venv ../.venv
+../.venv/Scripts/activate
+pip install -r requirements.txt
+uvicorn app.main:app --reload --port 8000
+```
+
+Frontend:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Build:
+
+```bash
+npm --prefix frontend run build
+```
+
+## Recruiter-Focused Technical Highlights
+
+- Built a full-stack AI trust intelligence platform with React, Tailwind CSS, FastAPI, and modular Python analyzers.
+- Designed an explainable weighted scoring pipeline for credibility risk, manipulation signals, toxicity, propaganda, claim reliability, and AI-generated suspicion.
+- Implemented a dedicated manipulation detection engine for fear appeal, outrage amplification, emotional coercion, one-sided framing, and divisive language.
+- Added confidence scoring, intelligence summaries, analysis timeline data, and realistic sample content endpoints.
+- Created a polished product experience with live scan storytelling, signal visualizations, report export UI, and browser extension mockups.
+
+## Future Improvements
+
+- Gemini/OpenAI integration for deeper reasoning and claim decomposition
+- Real source verification using trusted medical, government, academic, and fact-checking sources
+- Vector search for semantic source matching
+- Browser extension content capture and webpage scanning
+- Live narrative-risk monitoring
+- Report history, user accounts, and PDF export
+- Evaluation dataset for confidence calibration
+
+## Disclaimer
+
+TruthShield is decision-support software. It uses explainable heuristic scoring today and is architected for deeper model-backed analysis later. It should not be treated as a definitive truth oracle.
