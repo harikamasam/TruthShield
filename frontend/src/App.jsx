@@ -3,6 +3,7 @@ import { analyzeText } from "./api";
 import AnalysisSequence from "./components/AnalysisSequence";
 import AnalyzerInput from "./components/AnalyzerInput";
 import BrowserExtensionMockup from "./components/BrowserExtensionMockup";
+import ClaimVerificationReport from "./components/ClaimVerificationReport";
 import ClaimTable from "./components/ClaimTable";
 import FinalRecommendation from "./components/FinalRecommendation";
 import Footer from "./components/Footer";
@@ -103,7 +104,7 @@ export default function App() {
         <Hero onAnalyzeClick={() => document.getElementById("analyzer")?.scrollIntoView({ behavior: "smooth" })} />
         <StorytellingSection />
         <SamplePresetGrid onSelectSample={fillSample} />
-        <section className="mx-auto grid max-w-7xl gap-8 px-5 py-16 lg:grid-cols-[0.9fr_1.1fr]">
+        <section className="mx-auto grid max-w-7xl items-start gap-10 px-5 py-20 lg:grid-cols-[0.9fr_1.1fr] lg:gap-8 lg:py-24">
           <AnalyzerInput
             text={text}
             setText={setText}
@@ -120,8 +121,9 @@ export default function App() {
         <LiveScanOverlay loading={loading} progress={progress} stage={loadingStage} stages={pendingReport?.analysis_steps || scanStages} />
 
         {report && (
-          <section className="mx-auto grid max-w-7xl gap-8 px-5 pb-16 progressive-report">
+          <section className="mx-auto grid max-w-7xl gap-10 px-5 pb-20 pt-4 progressive-report lg:gap-12">
             <ReportNarrativeHeader report={report} />
+            <ClaimVerificationReport report={report} />
             <RiskReport report={report} />
             <SuspicionSection report={report} />
             <ManipulationVisualizer report={report} />

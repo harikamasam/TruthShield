@@ -12,7 +12,7 @@ export default function LiveScanOverlay({ loading, progress, stage, stages }) {
   if (!loading) return null;
 
   return (
-    <section className="fixed inset-0 z-[80] grid place-items-center bg-neutral-950/70 px-4 py-8 backdrop-blur-md">
+    <section className="fixed inset-0 z-[80] grid items-start justify-items-center overflow-y-auto bg-neutral-950/70 px-4 pb-8 pt-24 backdrop-blur-md sm:pb-10 sm:pt-28 lg:pt-24">
       <div className="live-dossier relative w-full max-w-5xl overflow-hidden rounded-[2.5rem] border border-white/15 bg-[#f6f4ef] p-5 shadow-2xl sm:p-8">
         <div className="dossier-scan-line" />
         <div className="relative z-10 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">

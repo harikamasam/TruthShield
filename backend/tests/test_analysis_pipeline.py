@@ -24,10 +24,19 @@ def test_analyze_returns_enhanced_intelligence_fields():
     assert "confidence_score" in data
     assert "analysis_steps" in data
     assert "intelligence_summary" in data
+    assert "verification_summary" in data
+    assert "claim_verification" in data
     assert "manipulation" in data
     assert "scoring" in data
     assert data["manipulation"]["manipulation_score"] > 0
     assert data["key_claims"]
+    assert data["claim_verification"]
+    assert data["claim_verification"][0]["status"] in {"Supported", "Refuted", "Unverified", "Needs More Evidence"}
+    assert data["claim_verification"][0]["sources"]
+    assert "source_name" in data["claim_verification"][0]["sources"][0]
+    assert "evidence_summary" in data["claim_verification"][0]["sources"][0]
+    assert "source_url" in data["claim_verification"][0]["sources"][0]
+    assert "claim_verification" in data["scoring"]["signals"]
     assert data["red_flags"]
 
 

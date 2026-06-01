@@ -5,6 +5,7 @@ const LABELS = {
   propaganda: "Propaganda",
   ai_generated_suspicion: "AI suspicion",
   claim_reliability: "Claim reliability",
+  claim_verification: "Claim verification",
   sensational_wording: "Sensational wording"
 };
 
@@ -16,6 +17,7 @@ function fallbackSignals(report) {
     propaganda: report.bias?.bias_score ?? 0,
     ai_generated_suspicion: report.ai_generated_suspicion?.probability ?? 0,
     claim_reliability: Math.min(100, (report.key_claims || []).filter((claim) => claim.needs_verification).length * 18),
+    claim_verification: Math.min(100, (report.claim_verification || []).filter((claim) => claim.status === "Refuted").length * 30),
     sensational_wording: Math.min(100, (report.red_flags || []).length * 12)
   };
 }
@@ -40,7 +42,7 @@ export default function SignalScoringSection({ report }) {
           </h2>
         </div>
         <p className="text-base leading-8 text-neutral-600">
-          Each backend signal contributes to the trust score with an explainable weight, showing how the system reasons across credibility, manipulation, toxicity, propaganda, claims, and AI suspicion.
+          Each backend signal contributes to the trust score with an explainable weight, showing how the system reasons across credibility, manipulation, toxicity, propaganda, claim verification, and AI suspicion.
         </p>
       </div>
       <div className="grid gap-4 lg:grid-cols-2">

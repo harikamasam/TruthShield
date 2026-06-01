@@ -10,10 +10,22 @@ def _claim_risk(claims: List[Dict[str, object]]) -> int:
     return clamp(suspicious * 26 + uncertain * 12 - verified * 10)
 
 
+def _verification_risk(verification_results: List[Dict[str, object]] | None) -> int:
+    if not verification_results:
+        return 0
+
+    refuted = sum(1 for result in verification_results if result.get("status") == "Refuted")
+    needs_more = sum(1 for result in verification_results if result.get("status") == "Needs More Evidence")
+    unverified = sum(1 for result in verification_results if result.get("status") == "Unverified")
+    supported = sum(1 for result in verification_results if result.get("status") == "Supported")
+    return clamp(refuted * 30 + needs_more * 13 + unverified * 10 - supported * 16)
+
+
 def score_trust(
     *,
     credibility_signals: Dict[str, object],
     claims: List[Dict[str, object]],
+    verification_results: List[Dict[str, object]] | None = None,
     toxicity: Dict[str, object],
     bias: Dict[str, object],
     manipulation: Dict[str, object],
@@ -26,6 +38,7 @@ def score_trust(
         "propaganda": int(bias["bias_score"]),
         "ai_generated_suspicion": int(ai_suspicion["probability"]),
         "claim_reliability": _claim_risk(claims),
+        "claim_verification": _verification_risk(verification_results),
         "sensational_wording": int(credibility_signals["sensational_score"]),
     }
 
@@ -35,7 +48,8 @@ def score_trust(
         "toxicity": 0.12,
         "propaganda": 0.17,
         "ai_generated_suspicion": 0.10,
-        "claim_reliability": 0.17,
+        "claim_reliability": 0.11,
+        "claim_verification": 0.12,
         "sensational_wording": 0.08,
     }
 
@@ -46,13 +60,18 @@ def score_trust(
         + signal_scores["propaganda"] * weights["propaganda"]
         + signal_scores["ai_generated_suspicion"] * weights["ai_generated_suspicion"]
         + signal_scores["claim_reliability"] * weights["claim_reliability"]
+        + signal_scores["claim_verification"] * weights["claim_verification"]
         + signal_scores["sensational_wording"] * weights["sensational_wording"]
     )
 
+    supported_claims = sum(1 for result in verification_results or [] if result.get("status") == "Supported")
+    refuted_claims = sum(1 for result in verification_results or [] if result.get("status") == "Refuted")
     trust_score = clamp(98 - risk_pressure * 1.45, 4, 98)
     confidence_score = clamp(
         58
         + len(claims) * 4
+        + supported_claims * 3
+        + refuted_claims * 2
         + len(credibility_signals["signals"]) * 3
         + len(manipulation["detected_tactics"]) * 3
         + (8 if toxicity["signals"] else 0),

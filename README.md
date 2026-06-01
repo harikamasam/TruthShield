@@ -2,7 +2,7 @@
 
 **AI Trust Intelligence Platform for misinformation, propaganda, toxicity, and AI-generated narrative analysis.**
 
-TruthShield analyzes online content and produces an explainable **Trust Intelligence Report**. It is built to feel like a serious AI product: a cinematic scan flow on the frontend, a modular FastAPI analysis pipeline on the backend, weighted signal scoring, manipulation detection, claim extraction, confidence scoring, and analyst-style summaries.
+TruthShield analyzes online content and produces an explainable **Trust Intelligence Report**. It is built to feel like a serious AI product: a cinematic scan flow on the frontend, a modular FastAPI analysis pipeline on the backend, weighted signal scoring, manipulation detection, claim extraction, claim verification, confidence scoring, and analyst-style summaries.
 
 ## Project Summary
 
@@ -15,6 +15,8 @@ TruthShield helps users evaluate risky narratives before sharing them. A user ca
 - Propaganda and bias patterns
 - AI-generated content suspicion
 - Claim reliability
+- Claim Verification Engine with explainable verdicts
+- Sources & Evidence Panel with trusted-source evidence mapping
 - Final sharing recommendation
 
 ## Architecture
@@ -25,6 +27,8 @@ TruthShield/
     app/
       main.py
       claim_extractor.py
+      claim_verifier.py
+      trusted_sources.py
       credibility_analyzer.py
       manipulation_detector.py
       toxicity_analyzer.py
@@ -40,6 +44,7 @@ TruthShield/
       components/
         AnalyzerInput.jsx
         LiveScanOverlay.jsx
+        ClaimVerificationReport.jsx
         ReportNarrativeHeader.jsx
         SignalScoringSection.jsx
         ManipulationVisualizer.jsx
@@ -49,6 +54,8 @@ TruthShield/
 ## Backend Intelligence Modules
 
 - **Claim Extraction**: extracts high-impact factual claims and assigns verification-style labels.
+- **Claim Verification Engine**: classifies extracted claims as supported, refuted, unverified, or needing more evidence using conservative trusted-source style evidence mapping.
+- **Trusted Source System**: maintains source profiles for WHO, CDC, PubMed, Reuters, AP News, Nature, and ScienceDirect, with category, trust level, source URL, evidence summaries, and explainable source-level reasoning.
 - **Credibility Engine**: detects source absence, sensational wording, urgency manipulation, unsupported authority claims, conspiracy phrasing, and clickbait.
 - **Manipulation Engine**: detects fear appeal, outrage amplification, emotional coercion, one-sided framing, propaganda language, divisive wording, and psychological triggers.
 - **Toxicity Engine**: detects harmful, abusive, threatening, and harassing language.
@@ -69,6 +76,8 @@ Returns both compatibility fields and enhanced intelligence fields:
 - `credibility_label`
 - `recommendation`
 - `intelligence_summary`
+- `verification_summary`
+- `claim_verification`
 - `analysis_steps`
 - `key_claims`
 - `red_flags`
@@ -90,9 +99,12 @@ Returns realistic demo samples for misinformation, propaganda, AI-generated writ
 - Live AI scan overlay with analysis timeline
 - Trust score and confidence score
 - Analyst-style intelligence summary
+- Claim Verification Report
+- Sources & Evidence Panel with grouped evidence cards
 - Manipulation Intelligence section
 - Signal-Based Risk Scoring section
 - Claim verification table
+- Explainable verification reasoning for each claim, source, and verdict
 - Red flag explanations
 - Before You Share recommendation panel
 - Browser extension and narrative-risk product mockups
@@ -136,7 +148,8 @@ npm --prefix frontend run build
 ## Recruiter-Focused Technical Highlights
 
 - Built a full-stack AI trust intelligence platform with React, Tailwind CSS, FastAPI, and modular Python analyzers.
-- Designed an explainable weighted scoring pipeline for credibility risk, manipulation signals, toxicity, propaganda, claim reliability, and AI-generated suspicion.
+- Designed an explainable weighted scoring pipeline for credibility risk, manipulation signals, toxicity, propaganda, claim reliability, claim verification, and AI-generated suspicion.
+- Built a Claim Verification Engine and Sources & Evidence Panel using modular trusted-source profiles and source-level evidence summaries.
 - Implemented a dedicated manipulation detection engine for fear appeal, outrage amplification, emotional coercion, one-sided framing, and divisive language.
 - Added confidence scoring, intelligence summaries, analysis timeline data, and realistic sample content endpoints.
 - Created a polished product experience with live scan storytelling, signal visualizations, report export UI, and browser extension mockups.

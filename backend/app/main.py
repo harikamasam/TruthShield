@@ -4,6 +4,7 @@ from pydantic import BaseModel, Field
 
 from .ai_content_detector import detect_ai_content
 from .bias_detector import detect_bias
+from .claim_verifier import generate_verification_summary, verify_claims
 from .claim_extractor import extract_claims
 from .credibility_analyzer import analyze_credibility, analyze_credibility_signals
 from .manipulation_detector import detect_manipulation
@@ -54,6 +55,8 @@ def analyze_content(payload: AnalyzeRequest):
         raise HTTPException(status_code=400, detail="Please provide at least 10 characters.")
 
     claims = extract_claims(text)
+    verification_results = verify_claims(claims)
+    verification_summary = generate_verification_summary(verification_results)
     toxicity = analyze_toxicity(text)
     bias = detect_bias(text)
     manipulation = detect_manipulation(text)
@@ -62,6 +65,7 @@ def analyze_content(payload: AnalyzeRequest):
     scoring = score_trust(
         credibility_signals=credibility_signals,
         claims=claims,
+        verification_results=verification_results,
         toxicity=toxicity,
         bias=bias,
         manipulation=manipulation,
@@ -79,6 +83,8 @@ def analyze_content(payload: AnalyzeRequest):
     )
     analysis_steps = [
         "Scanning narrative structure",
+        "Extracting checkable claims",
+        "Comparing claims with trusted-source profiles",
         "Detecting emotional manipulation",
         "Checking credibility signals",
         "Analyzing propaganda indicators",
@@ -95,6 +101,8 @@ def analyze_content(payload: AnalyzeRequest):
         "recommendation": credibility["recommendation"],
         "summary": intelligence_summary,
         "intelligence_summary": intelligence_summary,
+        "verification_summary": verification_summary,
+        "claim_verification": verification_results,
         "analysis_steps": analysis_steps,
         "key_claims": claims,
         "red_flags": credibility["red_flags"],

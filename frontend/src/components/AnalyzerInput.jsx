@@ -27,7 +27,7 @@ export default function AnalyzerInput({ text, setText, onAnalyze, loading, error
         </div>
 
         <textarea
-          className="min-h-80 w-full resize-y rounded-[1.6rem] border border-white/10 bg-white p-5 text-base leading-8 text-neutral-900 outline-none transition placeholder:text-neutral-400 focus:border-lime-200 focus:ring-4 focus:ring-lime-200/20"
+          className="min-h-48 w-full resize-y rounded-[1.6rem] border border-white/10 bg-white p-5 text-base leading-8 text-neutral-900 outline-none transition placeholder:text-neutral-400 focus:border-lime-200 focus:ring-4 focus:ring-lime-200/20 2xl:min-h-80"
           value={text}
           onChange={(event) => setText(event.target.value)}
           placeholder="Paste content here..."

@@ -38,6 +38,13 @@ a:hover {
   background: #0a0a0a;
 }
 
+#analyzer,
+#report,
+#thinking,
+#social {
+  scroll-margin-top: 7rem;
+}
+
 @layer components {
   .premium-card {
     @apply rounded-[2rem] border border-neutral-200 bg-white;
