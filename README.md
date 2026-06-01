@@ -29,6 +29,7 @@ TruthShield/
       claim_extractor.py
       claim_verifier.py
       trusted_sources.py
+      source_retriever.py
       credibility_analyzer.py
       manipulation_detector.py
       toxicity_analyzer.py
@@ -56,6 +57,8 @@ TruthShield/
 - **Claim Extraction**: extracts high-impact factual claims and assigns verification-style labels.
 - **Claim Verification Engine**: classifies extracted claims as supported, refuted, unverified, or needing more evidence using conservative trusted-source style evidence mapping.
 - **Trusted Source System**: maintains source profiles for WHO, CDC, PubMed, Reuters, AP News, Nature, and ScienceDirect, with category, trust level, source URL, evidence summaries, and explainable source-level reasoning.
+- **Trusted Source Reference Links**: adds stable public reference hub links, source metadata, citation notes, and reference-source badges without claiming live article verification.
+- **Source Retriever Interface**: exposes a deploy-safe `retrieve_sources_for_claim()` placeholder that can later connect to Tavily, SerpAPI, Google Custom Search, News API, Gemini/OpenAI retrieval, or RAG pipelines.
 - **Credibility Engine**: detects source absence, sensational wording, urgency manipulation, unsupported authority claims, conspiracy phrasing, and clickbait.
 - **Manipulation Engine**: detects fear appeal, outrage amplification, emotional coercion, one-sided framing, propaganda language, divisive wording, and psychological triggers.
 - **Toxicity Engine**: detects harmful, abusive, threatening, and harassing language.
@@ -100,7 +103,7 @@ Returns realistic demo samples for misinformation, propaganda, AI-generated writ
 - Trust score and confidence score
 - Analyst-style intelligence summary
 - Claim Verification Report
-- Sources & Evidence Panel with grouped evidence cards
+- Sources & Evidence Panel with grouped evidence cards, source metadata, citation notes, and clickable reference hub links
 - Manipulation Intelligence section
 - Signal-Based Risk Scoring section
 - Claim verification table
@@ -149,7 +152,7 @@ npm --prefix frontend run build
 
 - Built a full-stack AI trust intelligence platform with React, Tailwind CSS, FastAPI, and modular Python analyzers.
 - Designed an explainable weighted scoring pipeline for credibility risk, manipulation signals, toxicity, propaganda, claim reliability, claim verification, and AI-generated suspicion.
-- Built a Claim Verification Engine and Sources & Evidence Panel using modular trusted-source profiles and source-level evidence summaries.
+- Built a Claim Verification Engine and Evidence Intelligence Panel using modular trusted-source profiles, reference hub links, source metadata, source-level evidence summaries, and explainable citation notes.
 - Implemented a dedicated manipulation detection engine for fear appeal, outrage amplification, emotional coercion, one-sided framing, and divisive language.
 - Added confidence scoring, intelligence summaries, analysis timeline data, and realistic sample content endpoints.
 - Created a polished product experience with live scan storytelling, signal visualizations, report export UI, and browser extension mockups.
@@ -157,6 +160,7 @@ npm --prefix frontend run build
 ## Future Improvements
 
 - Gemini/OpenAI integration for deeper reasoning and claim decomposition
+- Live source retrieval using Tavily, SerpAPI, Google Custom Search, News API, Gemini/OpenAI retrieval, or a RAG pipeline
 - Real source verification using trusted medical, government, academic, and fact-checking sources
 - Vector search for semantic source matching
 - Browser extension content capture and webpage scanning
@@ -166,4 +170,4 @@ npm --prefix frontend run build
 
 ## Disclaimer
 
-TruthShield is decision-support software. It uses explainable heuristic scoring today and is architected for deeper model-backed analysis later. It should not be treated as a definitive truth oracle.
+TruthShield is decision-support software. It uses explainable heuristic scoring and trusted-source reference mapping today, not real-time web search. It is architected for deeper model-backed and live-retrieval analysis later, and should not be treated as a definitive truth oracle.

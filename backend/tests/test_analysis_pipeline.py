@@ -36,6 +36,10 @@ def test_analyze_returns_enhanced_intelligence_fields():
     assert "source_name" in data["claim_verification"][0]["sources"][0]
     assert "evidence_summary" in data["claim_verification"][0]["sources"][0]
     assert "source_url" in data["claim_verification"][0]["sources"][0]
+    assert "publisher" in data["claim_verification"][0]["sources"][0]
+    assert "article_title" in data["claim_verification"][0]["sources"][0]
+    assert "citation_note" in data["claim_verification"][0]["sources"][0]
+    assert data["claim_verification"][0]["sources"][0]["is_live_source"] is False
     assert "claim_verification" in data["scoring"]["signals"]
     assert data["red_flags"]
 
