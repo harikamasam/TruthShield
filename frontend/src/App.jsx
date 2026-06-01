@@ -1,25 +1,19 @@
 import { useEffect, useMemo, useState } from "react";
 import { analyzeText } from "./api";
+import AdvancedAnalysis from "./components/AdvancedAnalysis";
 import AnalysisSequence from "./components/AnalysisSequence";
 import AnalyzerInput from "./components/AnalyzerInput";
 import BrowserExtensionMockup from "./components/BrowserExtensionMockup";
 import ClaimVerificationReport from "./components/ClaimVerificationReport";
-import ClaimTable from "./components/ClaimTable";
 import FinalRecommendation from "./components/FinalRecommendation";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
-import HowTruthShieldThinks from "./components/HowTruthShieldThinks";
 import LiveScanOverlay from "./components/LiveScanOverlay";
-import ManipulationVisualizer from "./components/ManipulationVisualizer";
 import Navbar from "./components/Navbar";
-import RedFlags from "./components/RedFlags";
 import ReportNarrativeHeader from "./components/ReportNarrativeHeader";
-import RiskReport from "./components/RiskReport";
 import SamplePresetGrid from "./components/SamplePresetGrid";
-import SignalScoringSection from "./components/SignalScoringSection";
 import SocialIntelPreview from "./components/SocialIntelPreview";
 import StorytellingSection from "./components/StorytellingSection";
-import SuspicionSection from "./components/SuspicionSection";
 import TrendingNarrativeRisks from "./components/TrendingNarrativeRisks";
 import TrustScoreCard from "./components/TrustScoreCard";
 
@@ -124,16 +118,8 @@ export default function App() {
           <section className="mx-auto grid max-w-7xl gap-10 px-5 pb-20 pt-4 progressive-report lg:gap-12">
             <ReportNarrativeHeader report={report} />
             <ClaimVerificationReport report={report} />
-            <RiskReport report={report} />
-            <SuspicionSection report={report} />
-            <ManipulationVisualizer report={report} />
-            <SignalScoringSection report={report} />
-            <HowTruthShieldThinks report={report} />
-            <div className="grid gap-6 lg:grid-cols-[1.4fr_0.8fr]">
-              <ClaimTable claims={report.key_claims} />
-              <RedFlags flags={report.red_flags} />
-            </div>
             <FinalRecommendation report={report} />
+            <AdvancedAnalysis report={report} />
           </section>
         )}
         <TrendingNarrativeRisks />

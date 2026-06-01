@@ -24,12 +24,12 @@ export default function ReportNarrativeHeader({ report }) {
     <section className="report-brief-header overflow-hidden rounded-[2.5rem] border border-neutral-950 bg-white p-6 shadow-paper sm:p-8">
       <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
         <div>
-          <p className="section-kicker">AI intelligence report</p>
+          <p className="section-kicker">Trust Intelligence Report</p>
           <h2 className="mt-4 max-w-4xl text-6xl font-black leading-[0.9] tracking-[-0.075em] text-neutral-950">
-            TruthShield found the strongest risk signals.
+            Trust decision, confidence, and evidence summary.
           </h2>
           <p className="mt-6 max-w-3xl text-base leading-8 text-neutral-600">
-            This report explains why the content may be risky, how manipulation signals were weighted, and what to verify before sharing.
+            A fast read on whether the submitted content is trustworthy, what risk level it carries, and why verification matters.
           </p>
           <div className="mt-7 rounded-[1.6rem] border border-neutral-200 bg-[#f6f4ef] p-5">
             <p className="section-kicker">TruthShield Intelligence Summary</p>
