@@ -112,15 +112,7 @@ Returns realistic demo samples for misinformation, propaganda, AI-generated writ
 - Before You Share recommendation panel
 - Browser extension and narrative-risk product mockups
 
-## Screenshots
 
-Add screenshots here before publishing:
-
-- Hero and product mockup
-- Live AI scan overlay
-- Trust Intelligence Report
-- Manipulation Signals and Signal-Based Risk Scoring
-- Browser extension mockup
 
 ## Local Setup
 
